@@ -1,0 +1,8 @@
+package model;
+
+public enum IDType {
+	TARJETA_DE_IDENTIDAD,
+	CEDULA_DE_CIUDADANIA,
+	PASAPORTE,
+	CEDULA_DE_EXTRANJERIA;
+}
