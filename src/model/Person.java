@@ -4,7 +4,7 @@ public class Person {
 	
 	private IDType idType;
 	private String idNumber;
-	private final int personNumber;
+	private int personNumber;
 	private static int peopleCounter;
 	
 	
@@ -33,7 +33,4 @@ public class Person {
 	public static int getPeopleCounter() {
 		return peopleCounter;
 	}
-	
-	
-	
 }

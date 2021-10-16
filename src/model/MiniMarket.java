@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.GregorianCalendar;
-
 import exceptions.EvenDayException;
 import exceptions.IdentityCardException;
 import exceptions.OddDayException;
@@ -12,10 +11,15 @@ import exceptions.OddDayException;
 public class MiniMarket {
 	private List<Person> persons;
 	private Calendar date;
+	private int faultCounter;
 	
 	public MiniMarket() {
 		this.persons = new ArrayList<Person>();
 		this.date = new GregorianCalendar();
+	}
+	
+	public int getFaultCounter() {
+		return this.faultCounter;
 	}
 	
 	public void addPerson(String idType, String idNumber) throws IdentityCardException, EvenDayException, OddDayException{
@@ -25,10 +29,13 @@ public class MiniMarket {
 		
 		
 		if(idType.equals(IDType.TARJETA_DE_IDENTIDAD.name())) {
+			faultCounter++;
 			throw new IdentityCardException();
 		}else if( checkEvenDay(day) && checkPenultimateEvenDigit(penultimateDigit) ) {
+			faultCounter++;
 			throw new EvenDayException();
 		}else if(!checkEvenDay(day)&& !checkPenultimateEvenDigit(penultimateDigit) ) {
+			faultCounter++;
 			throw new OddDayException();
 		}
 		

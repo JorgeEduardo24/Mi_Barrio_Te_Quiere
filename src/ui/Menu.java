@@ -13,7 +13,7 @@ import model.Person;
 
 public class Menu {
 	private MiniMarket miniMarket;
-	String idType;
+	private String idType;
 	
 	public Menu() {
 		miniMarket = new MiniMarket();
@@ -124,7 +124,12 @@ public class Menu {
 	}
 	
 	public void showTotalPeople() {
-		System.out.println(Person.getPeopleCounter());
+		int successfulAttempts = Person.getPeopleCounter();
+		int failedAttempts = miniMarket.getFaultCounter();
+		int totalAttempts = successfulAttempts+failedAttempts;
+		System.out.println("Intentos exitosos de ingreso: "+successfulAttempts+"\n"
+				+"Intentos fallidos de ingreso: "+failedAttempts+"\n"
+				+"Intentos totales de ingreso: "+totalAttempts);
 	}
 	
 }
