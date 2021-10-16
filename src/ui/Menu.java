@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import exceptions.EvenDayException;
 import exceptions.IdentityCardException;
+import exceptions.OddDayException;
 import model.IDType;
 import model.MiniMarket;
+import model.Person;
 
 public class Menu {
 	private MiniMarket miniMarket;
@@ -34,7 +37,7 @@ public class Menu {
 		case 1:
 			System.out.println("-----------------------------------------------------");
 			System.out.println("      REGISTRAR LA ENTRADA DE UNA NUEVA PERSONA");
-			System.out.println("-------------------------------------------------+---");
+			System.out.println("-----------------------------------------------------");
 			
 			String idType = readIDType(br);
 			String idNumber = readIDNumber(br);
@@ -45,6 +48,7 @@ public class Menu {
 			System.out.println("-----------------------------------------------------");
 			System.out.println("    CANTIDAD DE PERSONAS QUE HAN INTENTADO ENTRAR");
 			System.out.println("-----------------------------------------------------");
+			showTotalPeople();
 			break;
 			
 		case 3:
@@ -108,10 +112,19 @@ public class Menu {
 	
 	public void registerPerson(String idType, String idNumber) throws NumberFormatException, IOException {
 		try {
-			miniMarket.addPerson(idType ,idNumber );
+			miniMarket.addPerson(idType ,idNumber);
+			System.out.println("Persona agregada satisfactoriamente al minimercado!");
 		}catch(IdentityCardException ice) {
 			System.err.println(ice.getMessage());
+		}catch(EvenDayException ede) {
+			System.err.println(ede.getMessage());
+		}catch(OddDayException ode) {
+			System.err.println(ode.getMessage());
 		}
+	}
+	
+	public void showTotalPeople() {
+		System.out.println(Person.getPeopleCounter());
 	}
 	
 }

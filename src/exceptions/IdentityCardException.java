@@ -7,6 +7,4 @@ public class IdentityCardException extends Exception {
 	public IdentityCardException() {
 		super("No puede ingresar al minimercado. Usted es menor de edad.");
 	}
-	
-
 }

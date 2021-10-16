@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import exceptions.EvenDayException;
 import exceptions.IdentityCardException;
+import exceptions.OddDayException;
 
 class MiniMarketTest {
 	private MiniMarket miniMarket;
@@ -16,7 +18,7 @@ class MiniMarketTest {
 	}
 	
 	@Test
-	public void testAdd() throws IdentityCardException {
+	public void testAdd() throws IdentityCardException, EvenDayException, OddDayException {
 		setupScenary1();
 		
 		String idType = "PASAPORTE";
