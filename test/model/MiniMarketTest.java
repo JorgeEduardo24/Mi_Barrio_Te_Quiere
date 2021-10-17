@@ -22,7 +22,15 @@ class MiniMarketTest {
 		setupScenary1();
 		
 		String idType = "PASAPORTE";
-		String idNumber = "159786479";
+		Calendar date = new GregorianCalendar();
+		String idNumber;
+		int today = date.get(Calendar.DAY_OF_MONTH);
+		if(today%2==0) {
+			idNumber = "1059786419";
+		}else {
+			idNumber = "1059786489";
+		}
+		
 		try {
 			miniMarket.addPerson(idType, idNumber);
 		}catch(IdentityCardException ice) {
@@ -37,6 +45,7 @@ class MiniMarketTest {
 		assertEquals(idType, p.getIdType().name());
 		assertEquals(idNumber, p.getIdNumber());
 	}
+	
 	
 	@Test
 	public void testAdd2() {
@@ -55,19 +64,27 @@ class MiniMarketTest {
 			miniMarket.addPerson(idType, idNumber);
 		}catch(IdentityCardException ice) {
 		}catch(EvenDayException ede) {
+			assertNull(miniMarket.getPersons().get(0));
 		}catch(OddDayException ode) {
+			assertNull(miniMarket.getPersons().get(0));
 		}
-		
 	}
+	
 	
 	@Test
 	public void testAdd3(){
 		setupScenary1();
+		
 		String idType = "TARJETA_DE_IDENTIDAD";
 		String idNumber = "123456789";
+		boolean isEmpty = false;
 		try {
 			miniMarket.addPerson(idType, idNumber);
 		}catch(IdentityCardException ice) {
+			if(miniMarket.getPersons().isEmpty()) {
+				isEmpty = true;
+			}
+			assertTrue(isEmpty);
 		}catch(EvenDayException ede) {
 		}catch(OddDayException ode) {
 		}
